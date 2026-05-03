@@ -25,7 +25,7 @@ def split_agent_paths(solution):
 # Agent 1 starts at (0,0), Agent 2 starts at (0,4)
 
 walls = {(1,1),(1,2),(2,3)}
-goals = [(4,2), (4,4), (3,0)]   # index 0 → bit 0, index 1 → bit 1
+goals = [(4,2), (4,4)]   # index 0 → bit 0, index 1 → bit 1
 
 grid = Grid(size=5, obstacles=walls, goals=goals)
 
