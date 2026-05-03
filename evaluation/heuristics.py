@@ -23,6 +23,10 @@ def remaining_goals(state: State, grid: Grid) -> List[Position]:
     return unvisited
 
 
+
+"""
+    NOT USED RIGHT NOW
+"""
 def h_max_distance(state: State, grid: Grid) -> int:
     """Heuristic: Max Manhattan distance from any agent to any unvisited goal."""
     unvisited = remaining_goals(state, grid)
