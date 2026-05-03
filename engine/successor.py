@@ -2,6 +2,7 @@ from engine.state import State
 from engine.grid import Grid
 from engine.rules import is_valid_transition
 from engine.transitions import apply_joint_action, MOVES
+from engine.state_ops import update_visited_mask
 
 
 def get_successor(state: State, grid:Grid) -> list[State]:
@@ -16,6 +17,9 @@ def get_successor(state: State, grid:Grid) -> list[State]:
             # 2) validate
             if not is_valid_transition(state.positions, new_positions, grid):
                 continue
+
+            # 3) update visited mask
+            new_mask = update_visited_mask(new_positions, state.visited_mask, grid)
 
             # 4) create new state
             new_state = State(new_positions, new_mask)
