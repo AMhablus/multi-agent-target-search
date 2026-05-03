@@ -1,4 +1,4 @@
-from engine import get_successor
+from engine.successor import get_successor
 from engine.goal import goal_test  
 
 def solve(strategy, initial_state, grid):
