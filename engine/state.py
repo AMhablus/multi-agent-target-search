@@ -13,7 +13,7 @@ class State:
         return self.positions == other.positions and self.visited_mask == other.visited_mask
 
     def __hash__(self):
-        return hash((self.positions, self.visited_mask, self.prev_positions))
+        return hash((self.positions, self.visited_mask))
 
     # used for printing the state; example > print(obj) or str(obj)
     def __str__(self):
