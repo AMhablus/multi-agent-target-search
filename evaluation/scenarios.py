@@ -32,7 +32,7 @@ def medium_scenario() -> tuple[Grid, State]:
 
 
 def large_scenario() -> tuple[Grid, State]:
-    """10x10 map, dense obstacles, goals in corners/edges."""
+    """10x10 map, dense obstacles, goals in corners."""
     size: GridSize = (10, 10)
     obstacles: set[Position] = {
         (i, 4) for i in range(1, 6)
