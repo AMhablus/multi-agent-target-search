@@ -1,4 +1,3 @@
-# evaluation/scenarios.py
 from engine.grid import Grid, State
 
 Position = tuple[int, int]
