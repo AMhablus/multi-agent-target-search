@@ -35,7 +35,7 @@ initial_state = State(
     visited_mask=0
 )
 
-for strategy in ['BFS', 'DFS']:
+for strategy in ['BFS', 'DFS', 'A*']:
     result = solve(strategy, initial_state, grid)
     if result:
         print(f"\n{strategy} Solution found!")
@@ -44,5 +44,5 @@ for strategy in ['BFS', 'DFS']:
 
         agent1, agent2 = split_agent_paths(result['solution'])
 
-        print("  Agent 1:", " → ".join(agent1))
-        print("  Agent 2:", " → ".join(agent2))
+        print("  Agent 1:", " -> ".join(agent1))
+        print("  Agent 2:", " -> ".join(agent2))

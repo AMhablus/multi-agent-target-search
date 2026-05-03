@@ -1,7 +1,7 @@
 # evaluation/visualization.py
 from typing import List, Optional
-from engine.grid import Grid, State, Position
-
+from engine.grid import Grid,  Position
+from engine.state import State
 # ANSI color codes for terminal output (optional, gracefully degrades)
 class Colors:
     RESET = "\033[0m"
