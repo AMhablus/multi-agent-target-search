@@ -21,4 +21,4 @@ class Grid:
         return pos in self.obstacles
 
     def is_goal(self, pos):
-        return pos in self.goals
+        return pos in self.goals_indeces
