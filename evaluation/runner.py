@@ -3,7 +3,7 @@ import time
 from typing import Callable, Dict, List, Any
 from engine.grid import Grid, State
 from engine.goal import goal_test
-from engine.successor import get_successors
+from engine.successor import get_successor
 from evaluation.metrics import format_result
 
 
@@ -22,7 +22,7 @@ def run_algorithm(
 
     # Bind grid to engine functions to match search algorithm signatures
     goal_fn = lambda s: goal_test(s, grid)
-    successor_fn = lambda s: get_successors(s, grid)
+    successor_fn = lambda s: get_successor(s, grid)
 
     try:
         if heuristic:
