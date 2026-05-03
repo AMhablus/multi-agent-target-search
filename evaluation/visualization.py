@@ -1,7 +1,9 @@
 # evaluation/visualization.py
 from typing import List, Optional
-from engine.grid import Grid,  Position
+from engine.grid import Grid
 from engine.state import State
+
+Position = tuple[int, int]
 # ANSI color codes for terminal output (optional, gracefully degrades)
 class Colors:
     RESET = "\033[0m"
@@ -29,12 +31,10 @@ def print_grid(
         path: List of states to highlight the solution path.
         highlight_positions: Extra positions to mark (e.g., for debugging).
     """
-    width, height = grid.width, grid.height
-    
-    # Pre-compute sets for O(1) lookup
-    obstacles = grid.obstacles
-    goals = set(grid.goals)
-    goal_indices = grid.goal_indices
+    size         = grid.size
+    obstacles    = grid.obstacles
+    goals        = set(grid.goals)
+    goal_indices = grid.goals_indeces   # {(x,y): bit_index}
     
     # Track visited goals from state or path
     visited_goals: set[Position] = set()
@@ -73,12 +73,11 @@ def print_grid(
     highlights = set(highlight_positions) if highlight_positions else set()
     
     # Print top border
-    print("  " + "─" * (width * 2 + 1))
+    print("  " + "─" * (size * 2 + 1))
     
-    # Print row by row (y from height-1 down to 0 for standard coordinate system)
-    for y in reversed(range(height)):
+    for y in reversed(range(size)):
         row = f"{y:2d} │"
-        for x in range(width):
+        for x in range(size):
             pos = (x, y)
             char = "·"  # Default empty cell
             
@@ -111,8 +110,8 @@ def print_grid(
         print(row)
     
     # Print bottom border + x-axis labels
-    print("  " + "─" * (width * 2 + 1))
-    print("    " + " ".join(f"{x:1d}" for x in range(width)))
+    print("  " + "─" * (size * 2 + 1))
+    print("    " + " ".join(f"{x:1d}" for x in range(size)))
     
     # Legend
     print(f"\n{Colors.BOLD}Legend:{Colors.RESET}")
@@ -151,5 +150,5 @@ def animate_path(
         os.system("cls" if os.name == "nt" else "clear")
     print(f"\n{Colors.BOLD}✓ Solution Complete{Colors.RESET}\n")
     print_grid(grid, state=path[-1], path=path)
-    print(f"\n{Colors.BOLD}Total Cost:{Colors.RESET} {path[-1].cost if path else 'N/A'}")
-    print(f"{Colors.BOLD}Total Steps:{Colors.RESET} {len(path) - 1}")
+    print(f"\n{Colors.BOLD}Total Cost:{Colors.RESET} {len(path) - 1 if path else 'N/A'}")
+    print(f"\n{Colors.BOLD}Total Steps:{Colors.RESET} {len(path) - 1}")
