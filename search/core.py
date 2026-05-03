@@ -1,7 +1,7 @@
 import heapq
 from engine.successor import get_successor
 from engine.goal import goal_test
-from evaluation.heuristics import h_max_distance, h_mst
+from evaluation.heuristics import h_mst
 
 
 def solve(strategy, initial_state, grid):
@@ -34,7 +34,7 @@ def solve(strategy, initial_state, grid):
         
 
         if goal_test(state, grid):
-            return get_solution(strategy, current_node, len(visited))
+            return get_solution(current_node, len(visited))
 
         for next_state, action in get_successor(state, grid):
             next_node = add_node(strategy, current_node, action, next_state, grid)
@@ -63,8 +63,8 @@ def init_node(strategy, initial_state, grid):
     return {
         'state': initial_state,
         'path':  [],
-        'g':     0,        # steps taken so far
-        'f':     0 + h,    # f = g + h
+        'g':     0,
+        'f':     h,
     }
 
 
@@ -79,9 +79,9 @@ def add_node(strategy, current_node, action, next_state, grid):
     }
 
 
-def get_solution(strategy, current_node, time):
+def get_solution(current_node, time):
     return {
         'solution': current_node['path'],
         'time':     time,
-        'cost':     current_node['g'],   # exact step count
+        'cost':     current_node['g'],
     }
