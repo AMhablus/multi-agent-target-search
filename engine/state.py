@@ -1,5 +1,10 @@
+from typing import Tuple
+Position = Tuple[int,int]
+Positions = Tuple[Position, ...]
+
+
 class State:
-    def __init__(self, positions, visited_mask):
+    def __init__(self, positions: Positions, visited_mask: int):
         self.positions = positions
         self.visited_mask = visited_mask
 
