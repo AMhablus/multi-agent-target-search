@@ -2,10 +2,21 @@ from engine.state import State
 from engine.grid import Grid
 from search.core import solve
 
+
+def split_agent_paths(solution):
+    agent1 = []
+    agent2 = []
+
+    for a1, a2 in solution:
+        agent1.append(a1)
+        agent2.append(a2)
+
+    return agent1, agent2
+
 # Simple 5x5 maze:
 # S = agent start, G = goal, # = wall
 #
-#  . . . . .
+#  A . . . A
 #  . # # . .
 #  . . . # .
 #  . . . . .
@@ -14,7 +25,7 @@ from search.core import solve
 # Agent 1 starts at (0,0), Agent 2 starts at (0,4)
 
 walls = {(1,1),(1,2),(2,3)}
-goals = [(4,2), (4,4)]   # index 0 → bit 0, index 1 → bit 1
+goals = [(4,2), (4,4), (3,0)]   # index 0 → bit 0, index 1 → bit 1
 
 grid = Grid(size=5, obstacles=walls, goals=goals)
 
@@ -30,6 +41,8 @@ for strategy in ['BFS', 'DFS']:
         print(f"\n{strategy} Solution found!")
         print(f"  Steps : {len(result['solution'])}")
         print(f"  Time  : {result['time']} states expanded")
-        print(f"  Path  : {result['solution']}")
-    else:
-        print(f"\n{strategy}: No solution found.")
+
+        agent1, agent2 = split_agent_paths(result['solution'])
+
+        print("  Agent 1:", " → ".join(agent1))
+        print("  Agent 2:", " → ".join(agent2))
