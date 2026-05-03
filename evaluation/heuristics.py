@@ -1,5 +1,6 @@
 from typing import List
-from engine.grid import Grid, State
+from engine.grid import Grid
+from engine.state import State
 from evaluation.mst import mst_cost
 
 
@@ -15,7 +16,7 @@ def remaining_goals(state: State, grid: Grid) -> List[Position]:
     """Return list of goal positions that have not been visited yet."""
     unvisited = []
     for goal in grid.goals:
-        idx = grid.goal_indices[goal]
+        idx = grid.goals_indeces[goal]
         # Check if the bit corresponding to this goal is NOT set
         if not (state.visited_mask & (1 << idx)):
             unvisited.append(goal)

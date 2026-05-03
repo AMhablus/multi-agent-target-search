@@ -1,4 +1,5 @@
-from engine.grid import Grid, State
+from engine.grid import Grid
+from engine.state import State
 
 Position = tuple[int, int]
 GridSize = tuple[int, int]
