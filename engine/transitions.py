@@ -1,10 +1,9 @@
-MOVES = [
-    (0, 1), # up
-    (0, -1), # down
-    (1, 0), # right
-    (-1, 0), # left
-    (0, 0), # stay
-]
+MOVES = {
+    "UP": (-1, 0),
+    "DOWN": (1, 0),
+    "LEFT": (0, -1),
+    "RIGHT": (0, 1),
+}
 
 def apply_move(pos, move):
     # move a single agent
