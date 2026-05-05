@@ -1,8 +1,8 @@
 MOVES = {
-    "UP": (-1, 0),
-    "DOWN": (1, 0),
-    "LEFT": (0, -1),
-    "RIGHT": (0, 1),
+    "UP": (0, 1),
+    "DOWN": (0, -1),
+    "LEFT": (-1, 0),
+    "RIGHT": (1, 0),
 }
 
 def apply_move(pos, move):
